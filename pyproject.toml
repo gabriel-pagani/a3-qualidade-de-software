@@ -1,0 +1,28 @@
+[project]
+name = "Kryptex"
+version = "0.1.0"
+description = "Local password manager with an absolute focus on security"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+    { name = "gabriel-pagani", email = "gabrielpaganidesouza@gmail.com" }
+]
+dependencies = [
+  "argon2-cffi==25.1.0",
+  "cryptography==46.0.3",
+  "flet==0.80.1",
+]
+
+[dependency-groups]
+dev = [
+  "flet[all]>=0.80.1",
+]
+
+[tool.flet]
+org = "com.kryptex"
+product = "Kryptex"
+company = "Kryptex"
+copyright = "Copyright (C) 2026 by Kryptex"
+
+[tool.flet.app]
+path = "src"
