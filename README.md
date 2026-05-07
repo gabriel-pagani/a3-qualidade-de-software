@@ -5,7 +5,7 @@ Local password manager with an absolute focus on personal security
 
 #### 1. Clone the repository
 ```
-git clone https://github.com/gabriel-pagani/kryptex.git && cd kryptex/
+git clone https://github.com/gabriel-pagani/A3-Qualidade-De-Software.git && cd kryptex/
 ```
 
 #### 2. Create a virtual environment and install the dependencies
@@ -22,7 +22,7 @@ flet run
 ```
 
 # License
-See the [LICENSE](https://github.com/gabriel-pagani/kryptex/blob/master/LICENSE) file for more details.
+See the [LICENSE](https://github.com/gabriel-pagani/A3-Qualidade-De-Software/blob/main/LICENSE) file for more details.
 
 # Contact Information
 Email: gabrielpaganidesouza@gmail.com
