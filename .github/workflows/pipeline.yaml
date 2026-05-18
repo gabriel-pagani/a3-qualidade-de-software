@@ -6,8 +6,8 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Roda um comando!
-        run: echo $(pwd)
+      - name: Clona o repo
+        uses: actions/checkout@v6.0.2
       
-      - name: Roda outro comando!
+      - name: Lista os arquivos
         run: echo $(ls)
