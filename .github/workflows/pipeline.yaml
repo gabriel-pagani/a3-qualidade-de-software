@@ -19,9 +19,3 @@ jobs:
 
       - name: Realiza os testes
         run: pytest --cov --junitxml=junit.xml -o junit_family=legacy
-
-      - name: Sobe a cobertura para o codecov
-        if: ${{ !cancelled() }}
-        uses: codecov/test-results-action@v1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
