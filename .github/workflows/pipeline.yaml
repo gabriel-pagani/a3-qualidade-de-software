@@ -16,3 +16,8 @@ jobs:
 
       - name: Instala as dependências
         run: pip install -r requirements.txt
+
+      - name: Sobe a cobertura para o codecov
+        uses: codecov/codecov-action@v6
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
