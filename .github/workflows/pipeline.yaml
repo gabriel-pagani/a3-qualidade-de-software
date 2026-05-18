@@ -9,5 +9,7 @@ jobs:
       - name: Clona o repo
         uses: actions/checkout@v6.0.2
       
-      - name: Lista os arquivos
-        run: echo $(ls)
+      - name: Instala o python
+        uses: actions/setup-python@v6.2.0 
+        with:
+          python-version: '3.14'
