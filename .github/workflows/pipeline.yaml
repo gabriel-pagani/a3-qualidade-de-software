@@ -7,10 +7,10 @@ jobs:
 
     steps:
       - name: Clona o repo
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v6
       
       - name: Instala o python
-        uses: actions/setup-python@v6.2.0 
+        uses: actions/setup-python@v6 
         with:
           python-version: '3.14'
 
