@@ -2,7 +2,7 @@ name: Pipeline
 on: [push]
 
 jobs:
-  test:
+  tests:
     runs-on: windows-latest
 
     steps:
