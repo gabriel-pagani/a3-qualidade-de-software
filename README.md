@@ -5,15 +5,24 @@ Local password manager with an absolute focus on personal security
 
 #### 1. Clone the repository
 ```
-git clone https://github.com/gabriel-pagani/A3-Qualidade-De-Software.git && cd kryptex/
+git clone https://github.com/gabriel-pagani/A3-Qualidade-De-Software.git
+```
+```
+cd A3-Qualidade-De-Software/
 ```
 
 #### 2. Create a virtual environment and install the dependencies
 ```
-python3 -m venv venv && source venv/bin/activate
+python3 -m venv venv
 ```
 ```
-python -m pip install --upgrade pip && pip install -r requirements.txt
+source venv/bin/activate
+```
+```
+python -m pip install --upgrade pip
+```
+```
+pip install -r requirements.txt
 ```
 
 #### 3. Run the app
