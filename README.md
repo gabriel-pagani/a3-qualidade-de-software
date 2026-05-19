@@ -30,6 +30,13 @@ pip install -r requirements.txt
 flet run
 ```
 
+## Useful Commands
+
+#### Generates a report on test coverage
+```
+pytest --cov=src --cov-report=html tests/
+```
+
 # License
 See the [LICENSE](https://github.com/gabriel-pagani/A3-Qualidade-De-Software/blob/main/LICENSE) file for more details.
 
