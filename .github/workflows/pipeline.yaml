@@ -18,4 +18,4 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Realiza os testes
-        run: pytest --cov --junitxml=junit.xml -o junit_family=legacy
+        run: pytest
