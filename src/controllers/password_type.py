@@ -24,7 +24,6 @@ class PasswordType:
                     id=response[0][0],
                     name=response[0][1],
                 )
-            return None
             
         except Exception as e:
             print(f"exception-on-create: {e}")
@@ -71,9 +70,6 @@ class PasswordType:
 
     def update(self, name: str) -> bool:
         try:
-            if not self.id:
-                return False
-
             execute_query(
                 f"UPDATE password_types SET name = ? WHERE id = ?", 
                 (name.strip(), self.id)
@@ -89,9 +85,6 @@ class PasswordType:
 
     def delete(self) -> bool:
         try:
-            if not self.id:
-                return False
-            
             execute_query(
                 "DELETE FROM password_types WHERE id = ?",
                 (self.id,)
