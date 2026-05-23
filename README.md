@@ -34,7 +34,7 @@ flet run
 
 #### Generates a report on test coverage
 ```
-pytest --cov=src --cov-report=html tests/
+pytest -v --cov=src --cov-report=html tests/
 ```
 
 # License
