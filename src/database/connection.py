@@ -142,7 +142,8 @@ def is_valid_database_file(file_path: str) -> bool:
     try:
         shutil.copy(file_path, temp_db_path)
         
-        with sqlite3.connect(temp_db_path) as conn:
+        conn = sqlite3.connect(temp_db_path)
+        try:
             cursor = conn.cursor()
             
             cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
@@ -153,7 +154,10 @@ def is_valid_database_file(file_path: str) -> bool:
             if not required_tables.issubset(tables):
                 return False
                 
-        return True
+            return True
+
+        finally:
+            conn.close()
     
     except Exception as e:
         print(f"sandbox-error: {e}")
