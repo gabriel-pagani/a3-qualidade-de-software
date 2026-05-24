@@ -123,16 +123,20 @@ def get_connection():
 
 
 def execute_query(query: str, params = None):
-    with get_connection() as conn:
-        cursor = conn.cursor()
+    conn = get_connection()
+    try:
+        with conn: 
+            cursor = conn.cursor()
 
-        if params is not None:
-            cursor.execute(query, params)
-        else:
-            cursor.execute(query)
+            if params is not None:
+                cursor.execute(query, params)
+            else:
+                cursor.execute(query)
 
-        if cursor.description is not None:
-            return cursor.fetchall()
+            if cursor.description is not None:
+                return cursor.fetchall()
+    finally:
+        conn.close()
 
 
 def is_valid_database_file(file_path: str) -> bool:
