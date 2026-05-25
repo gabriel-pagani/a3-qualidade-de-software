@@ -42,7 +42,6 @@ class User:
                     master_password_hash=response[0][3],
                     is_admin=response[0][4],
                 ), "success", "User created successfully!"
-            raise Exception
             
         except IntegrityError as e:
             print(f"integrity-error: {e}")

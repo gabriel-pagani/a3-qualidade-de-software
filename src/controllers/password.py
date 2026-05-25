@@ -59,7 +59,6 @@ class Password:
                     created_at=response[0][7],
                     updated_at=response[0][8],
                 )
-            return None
             
         except Exception as e:
             print(f"exception-on-create: {e}")
@@ -168,9 +167,6 @@ class Password:
 
     def delete(self) -> bool:
         try:
-            if not self.id:
-                return False
-            
             execute_query(
                 "DELETE FROM passwords WHERE id = ?",
                 (self.id,)
