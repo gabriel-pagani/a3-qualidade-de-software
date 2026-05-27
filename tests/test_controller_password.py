@@ -147,3 +147,102 @@ def test_update_password_invalid(setup_user):
     )
 
     assert result is False
+
+
+@patch('controllers.password.execute_query')
+def test_update_password_exception(mock_execute_query, setup_user):
+    mock_execute_query.side_effect = Exception("Erro simulado de banco de dados")
+    user, user_key = setup_user
+
+    new_password = Password(
+        id=1, user_id=user.id, type_id=None,
+        metadata_iv=b'', encrypted_metadata=b'',
+        secret_iv=b'', encrypted_secret=b'',
+        created_at=None, updated_at=None
+    )
+
+    result = new_password.update(
+        user_key=user_key,
+        meta_data={"service": "Google"}
+    )
+
+    assert result is False
+
+
+def test_delete_password(setup_user):
+    user, user_key = setup_user
+    new_password = Password.create(
+        user_id=user.id,
+        user_key=user_key,
+        meta_data={"service": "Google"},
+        secret_data={"password": "123"}
+    )
+
+    result = new_password.delete()
+    password = Password.get(id=new_password.id)
+
+    assert result is True
+    assert password is None
+
+
+@patch('controllers.password.execute_query')
+def test_delete_password_exception(mock_execute_query):
+    mock_execute_query.side_effect = Exception("Erro simulado de banco de dados")
+
+    new_password = Password(
+        id=1, user_id=1, type_id=None,
+        metadata_iv=b'', encrypted_metadata=b'',
+        secret_iv=b'', encrypted_secret=b'',
+        created_at=None, updated_at=None
+    )
+    result = new_password.delete()
+
+    assert result is False
+
+
+def test_update_password_type_id(setup_user):
+    user, user_key = setup_user
+    
+    pw_type = PasswordType.create(name="Social Media")
+    
+    new_password = Password.create(
+        user_id=user.id,
+        user_key=user_key,
+        meta_data={"service": "Twitter"},
+        secret_data={"password": "123"},
+        type_id=None
+    )
+    
+    result = new_password.update(
+        user_key=user_key,
+        type_id=pw_type.id
+    )
+    
+    updated_password = Password.get(id=new_password.id)
+
+    assert result is True
+    assert updated_password.type_id == pw_type.id
+
+
+def test_update_password_type_id_to_none(setup_user):
+    user, user_key = setup_user
+    
+    pw_type = PasswordType.create(name="Email")
+    
+    new_password = Password.create(
+        user_id=user.id,
+        user_key=user_key,
+        meta_data={"service": "Gmail"},
+        secret_data={"password": "123"},
+        type_id=pw_type.id
+    )
+    
+    result = new_password.update(
+        user_key=user_key,
+        type_id=0
+    )
+    
+    updated_password = Password.get(id=new_password.id)
+
+    assert result is True
+    assert updated_password.type_id is None
