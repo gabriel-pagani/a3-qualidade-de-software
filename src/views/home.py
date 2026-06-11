@@ -445,7 +445,10 @@ class HomeView:
 
             self.page.show_dialog(edit_password_dialog)
         
-        def save_edited_password(e, password: Password):
+        def save_edited_password(e, password: Password | None):
+            if not password:
+                return
+            
             service_input.error = None
             password_input.error = None
             
@@ -490,7 +493,7 @@ class HomeView:
                 close_dialog(e)
                 show_message(self.page, "error", "Error editing password! Please try again later.")
 
-        def confirm_delete_password(e, password: Password):
+        def confirm_delete_password(e, password: Password | None):
             if password and Password.get(password.id):
                 Password.get(password.id).delete()
                 
@@ -503,7 +506,7 @@ class HomeView:
                 close_dialog(e)         # Close the password editing dialog
                 show_message(self.page, "error", "Error deleting password! Please try again later.")
 
-        def open_delete_password_dialog(e, password: Password):
+        def open_delete_password_dialog(e, password: Password | None):
             delete_password_confirmation_dialog = ft.AlertDialog(
                 modal=True,
                 title=ft.Text("Confirm deletion"),
